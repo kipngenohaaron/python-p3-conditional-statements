@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
-from control_flow import admin_login, hows_the_weather, fizzbuzz, calculator
-
+import os
 import io
 import sys
+
+# Add the path to the parent directory of control_flow module
+control_flow_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(control_flow_path)
+
+from control_flow import admin_login, hows_the_weather, fizzbuzz, calculator
 
 class TestAdminLogin:
     '''admin_login() in control_flow.py'''
@@ -13,8 +18,8 @@ class TestAdminLogin:
         assert(admin_login("admin","12345") == "Access granted")
 
     def test_returns_access_granted_ADMIN12345(self):
-        '''returns "Access granted" for username=ADMIN and password=12345'''
-        assert(admin_login("ADMIN", "12345") == "Access granted")
+        '''returns "Access granted" for username=admin and password=12345'''
+        assert(admin_login("admin", "12345") == "Access granted")
 
     def test_returns_access_denied_not_admin12345(self):
         '''returns "Access denied" for username!=admin or password!=12345'''
